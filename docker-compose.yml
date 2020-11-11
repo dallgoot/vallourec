@@ -1,0 +1,29 @@
+version: '2'
+services:
+  db:
+      image: mysql:8.0.22
+      command: --default-authentication-plugin=mysql_native_password
+      restart: always
+      environment:
+        MYSQL_ROOT_PASSWORD: example
+      ports:
+        - 3308:3306
+      volumes:
+        - ./mysql:/var/lib/mysql
+
+  nodejs:
+      image: node:15.1.0-alpine3.10
+      user: "node"
+      working_dir: /home/node/app
+      environment:
+        - NODE_ENV=production
+      volumes:
+        - .smart-auth/:/home/node/app
+      ports:
+        - "80:3000"
+      command: "npm server"
+  
+  backend:
+    image: whatwedo/symfony4:v2.1
+      # ports:
+      #   - 80:80

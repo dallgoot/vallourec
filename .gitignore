@@ -1,0 +1,5 @@
+medium_clone.mwb.bak
+.vscode
+/mysql/*
+# !/mysql/medium_clone*
+smart-auth/node_modules/**
